@@ -12,7 +12,17 @@ const findById = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 }; 
 
+const createProduct = async (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+    return { status: 'INVALID_VALUE', data: { error: 'Invalid product name' } };
+  }
+  const { status, data } = await productsService.createProduct(name);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   findAll,
   findById,
+  createProduct,
 };

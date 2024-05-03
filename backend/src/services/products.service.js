@@ -22,7 +22,22 @@ const findById = async (id) => {
   };
 };
 
+const createProduct = async (name) => {
+  const product = await productModel.createProduct(name);
+  if (!product) {
+    return {
+      status: 'INVALID_VALUE',
+      data: { message: 'Product not subscribed' },
+    };
+  }
+  return {
+    status: 'CREATED',
+    data: product,
+  };
+};
+
 module.exports = {
   findAll,
   findById,
+  createProduct,
 };

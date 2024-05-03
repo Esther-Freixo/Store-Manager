@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const { products, productId } = require('../mocks/products.mock');
+const { products, productId, newProductName, newProduct } = require('../mocks/products.mock');
 const { productsService } = require('../../../src/services');
 const { productsModel } = require('../../../src/models');
 
@@ -31,5 +31,13 @@ describe('Products SERVICES:', function () {
     const responseService = await productsService.findById(888);
     expect(responseService.status).to.equal('NOT_FOUND');
     expect(responseService.data).to.deep.equal({ message: 'Product not found' }); 
+  });
+
+  it('Verifica a função createProduct com retorno CREATED ', async function () {
+    sinon.stub(productsModel, 'createProduct').resolves(newProduct);
+  
+    const responseService = await productsService.createProduct(newProductName);
+    expect(responseService.status).to.equal('CREATED');
+    expect(responseService.data).to.deep.equal(newProduct);
   });
 });

@@ -23,8 +23,17 @@ const productIdFromModel = {
   name: 'Martelo de Thor',
 };
 
+const newProductName = 'ProdutoX';
+
+const newProduct = {
+  id: 4,
+  name: 'ProdutoX',
+};
+
 module.exports = {
   products,
   productId,
   productIdFromModel,
+  newProduct,
+  newProductName,
 };
