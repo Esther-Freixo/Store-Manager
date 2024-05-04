@@ -2,7 +2,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 
 const { expect } = chai;
-const { validateName } = require('../../../src/services/validations/validation.products');
+const { validateName } = require('../../../src/middlewares/validation.products');
 
 describe('Middleware - validateName', function () {
   let req; let res; let 

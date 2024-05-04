@@ -13,7 +13,7 @@
     "test:mocha": "mocha",
     "test:coverage": "nyc mocha",
     "test:mutation": "stryker run",
-    "lint": "eslint --no-error-on-unmatched-pattern ."
+"lint": "eslint --no-error-on-unmatched-pattern . $(if [ \"$FIX\" = \"true\" ]; then echo '--fix'; fi)"
   },
   "dependencies": {
     "@hapi/boom": "9.1.0",
