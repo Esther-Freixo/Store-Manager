@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const { salesFromModel, salesIdFromModel } = require('../mocks/sales.mock');
+const { salesFromModel, salesIdFromModel, reqSalesProd, resSalesProd } = require('../mocks/sales.mock');
 const { salesService } = require('../../../src/services');
 const { salesModel } = require('../../../src/models');
 
@@ -33,5 +33,13 @@ describe('sales SERVICES:', function () {
     const responseService = await salesService.findById(saleId);
     expect(responseService.status).to.equal('NOT_FOUND');
     expect(responseService.data).to.deep.equal({ message: 'Sale not found' });
+  });
+
+  it('Verifica o cadastro de uma nova sale com sucesso', async function () {
+    sinon.stub(salesModel, 'createSale').resolves(resSalesProd);
+
+    const responseService = await salesService.createSale(reqSalesProd);
+    expect(responseService.status).to.equal('CREATED');
+    expect(responseService.data).to.deep.equal(resSalesProd);
   });
 });

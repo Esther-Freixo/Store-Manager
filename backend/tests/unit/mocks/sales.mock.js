@@ -26,7 +26,34 @@ const salesIdFromModel = [
   },
 ];
 
+const reqSalesProd = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    productId: 2,
+    quantity: 5,
+  },
+];
+
+const resSalesProd = {
+  id: 3,
+  itemsSold: [
+    {
+      productId: 1,
+      quantity: 1,
+    },
+    {
+      productId: 2,
+      quantity: 5,
+    },
+  ],
+};
+
 module.exports = {
   salesFromModel,
   salesIdFromModel,
+  reqSalesProd,
+  resSalesProd,
 };

@@ -22,7 +22,13 @@ const findById = async (saleId) => {
   };
 };
 
+const createSale = async (newSaleInfo) => {
+  const modelResponse = await salesModel.createSale(newSaleInfo);
+  return { status: 'CREATED', data: modelResponse };
+};
+
 module.exports = {
   findAll,
   findById,
+  createSale,
 };

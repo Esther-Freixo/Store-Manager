@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const connection = require('../../../src/models/connection');
-const { salesFromModel, salesIdFromModel } = require('../mocks/sales.mock');
+const { salesFromModel, salesIdFromModel, reqSalesProd, resSalesProd } = require('../mocks/sales.mock');
 const { salesModel } = require('../../../src/models');
 
 describe('Sales MODEL:', function () {
@@ -32,6 +32,16 @@ describe('Sales MODEL:', function () {
 
     expect(salesResponse).to.be.equal(null);
   });
+
+  it('Verificando inserção de nova venda com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves([{ insertId: 3 }]);
+    
+    const newSale = await salesModel.createSale(reqSalesProd);
+
+    expect(newSale).to.be.an('object'); 
+    expect(newSale).to.be.deep.equal(resSalesProd);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
