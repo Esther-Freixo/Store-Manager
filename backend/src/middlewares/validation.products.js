@@ -8,7 +8,7 @@ const validateName = (req, res, next) => {
   }
   next();
 };
-  
+
 module.exports = {
   validateName,
 };
