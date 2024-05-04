@@ -30,10 +30,21 @@ const newProduct = {
   name: 'ProdutoX',
 };
 
+const reqUpdate = {
+  "name": "Martelo do Batman"
+};
+
+const resUptade = {
+  "id": 1,
+  "name": "Martelo do Batman"
+};
+
 module.exports = {
   products,
   productId,
   productIdFromModel,
   newProduct,
   newProductName,
+  reqUpdate,
+  resUptade,
 };

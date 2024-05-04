@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const { products, productId, newProductName, newProduct } = require('../mocks/products.mock');
+const { products, productId, newProductName, newProduct, resUptade } = require('../mocks/products.mock');
 const { productsService } = require('../../../src/services');
 const { productsModel } = require('../../../src/models');
 
@@ -39,5 +39,21 @@ describe('Products SERVICES:', function () {
     const responseService = await productsService.createProduct(newProductName);
     expect(responseService.status).to.equal('CREATED');
     expect(responseService.data).to.deep.equal(newProduct);
+  });
+
+  it('Verifica a função updateProduct com sucesso ', async function () {
+    sinon.stub(productsModel, 'updateProduct').resolves(resUptade);
+  
+    const responseService = await productsService.updateProduct(resUptade);
+    expect(responseService.status).to.equal('SUCCESSFUL');
+    expect(responseService.data).to.deep.equal(resUptade);
+  });
+
+  it('Verifica a função updateProduct sem sucesso ', async function () {
+    sinon.stub(productsModel, 'updateProduct').resolves();
+  
+    const responseService = await productsService.updateProduct(resUptade);
+    expect(responseService.status).to.equal('INVALID_VALUE');
+    expect(responseService.data).to.deep.equal({ message: 'Product not updated' })
   });
 });

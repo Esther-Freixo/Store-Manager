@@ -36,8 +36,23 @@ const createProduct = async (name) => {
   };
 };
 
+const updateProduct = async(id,name) =>{
+  const uptProduct = await productModel.updateProduct(id, name);
+  if (!uptProduct) {
+    return {
+      status: 'INVALID_VALUE',
+      data: { message: 'Product not updated' },
+    };
+  }
+  return {
+    status: 'SUCCESSFUL',
+    data: uptProduct,
+  };
+};
+
 module.exports = {
   findAll,
   findById,
   createProduct,
+  updateProduct
 };

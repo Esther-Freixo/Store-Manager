@@ -2,7 +2,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const { productsService } = require('../../../src/services');
-const { products, productId, newProductName, newProduct } = require('../mocks/products.mock');
+const { products, productId, newProductName, newProduct, resUptade } = require('../mocks/products.mock');
 const { productsController } = require('../../../src/controllers');
 
 const { expect } = chai;
@@ -91,5 +91,53 @@ describe('Products CONTROLLERS:', function () {
     await productsController.createProduct(req, res);
     expect(res.status).to.have.been.calledWith(201);
     expect(res.json).to.have.been.calledWith(newProduct);
+  });
+
+  it('Verifica o retorno SUCCESSFUL da função updateProduct', async function () {
+    const req = {
+      params: {
+        id: 1,
+      },
+      body:{
+        name: 'Martelo do Batman'
+      }
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(), 
+    };
+
+    sinon.stub(productsService, 'updateProduct').resolves({
+      status: 'SUCCESSFUL',
+      data: resUptade,
+    });
+
+    await productsController.updateProduct(req, res);
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(resUptade);
+  });
+
+  it('Verifica o retorno sem sucesso da função updateProduct', async function () {
+    const req = {
+      params: {
+        id: 888,
+      },
+      body:{
+        name: 'teste'
+      }
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(), 
+    };
+
+    sinon.stub(productsService, 'updateProduct').resolves({
+      status: 'INVALID_VALUE',
+      data: { message: 'Product not updated' },
+    });
+
+    await productsController.updateProduct(req, res);
+    expect(res.status).to.have.been.calledWith(422);
+    expect(res.json).to.have.been.calledWith({ message: 'Product not updated' });
   });
 });
