@@ -59,6 +59,21 @@ describe('Products MODEL:', function () {
     
     expect(result).to.be.equal(null);
   });
+  it('correctly deletes a product', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+  
+    const response = await productsModel.deleteProduct(1);
+  
+    expect(response.affectedRows).to.equal(1);
+  });
+  
+  it('returns null for non-existent product deletion', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 0 }]);
+  
+    const response = await productsModel.deleteProduct(888);
+  
+    expect(response.affectedRows).to.equal(0);
+  });
 
   afterEach(function () {
     sinon.restore();

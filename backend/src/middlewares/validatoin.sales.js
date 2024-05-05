@@ -1,6 +1,5 @@
 const { productsModel } = require('../models');
 
-// Function to validate individual sale item
 const validateSaleItem = async (item) => {
   if (!item.productId) {
     return { error: true, message: '"productId" is required', statusCode: 400 };
@@ -22,7 +21,6 @@ const validateSaleItem = async (item) => {
   return { error: false };
 };
 
-// Main validation middleware using Promise.all for asynchronous array processing
 const validateSaleItems = async (req, res, next) => {
   const saleItems = req.body;
   if (!Array.isArray(saleItems)) {
