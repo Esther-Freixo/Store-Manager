@@ -36,12 +36,12 @@ const createProduct = async (name) => {
   };
 };
 
-const updateProduct = async(id,name) =>{
+const updateProduct = async (id, name) => {
   const uptProduct = await productModel.updateProduct(id, name);
-  if (!uptProduct) {
+  if (uptProduct === null) {
     return {
-      status: 'INVALID_VALUE',
-      data: { message: 'Product not updated' },
+      status: 'NOT_FOUND',
+      data: { message: 'Product not found' },
     };
   }
   return {
@@ -54,5 +54,5 @@ module.exports = {
   findAll,
   findById,
   createProduct,
-  updateProduct
+  updateProduct,
 };

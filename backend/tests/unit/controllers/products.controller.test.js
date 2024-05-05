@@ -98,9 +98,9 @@ describe('Products CONTROLLERS:', function () {
       params: {
         id: 1,
       },
-      body:{
-        name: 'Martelo do Batman'
-      }
+      body: {
+        name: 'Martelo do Batman',
+      },
     };
     const res = {
       status: sinon.stub().returnsThis(),
@@ -122,9 +122,9 @@ describe('Products CONTROLLERS:', function () {
       params: {
         id: 888,
       },
-      body:{
-        name: 'teste'
-      }
+      body: {
+        name: 'teste',
+      },
     };
     const res = {
       status: sinon.stub().returnsThis(),

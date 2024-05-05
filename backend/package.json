@@ -12,8 +12,8 @@
     "dev": "nodemon --inspect=0.0.0.0:9229 .",
     "test:mocha": "mocha",
     "test:coverage": "nyc mocha",
-    "test:mutation": "stryker run",
-"lint": "eslint --no-error-on-unmatched-pattern . $(if [ \"$FIX\" = \"true\" ]; then echo '--fix'; fi)"
+    "test:mutation": "stryker run", 
+    "lint": "eslint --no-error-on-unmatched-pattern ."
   },
   "dependencies": {
     "@hapi/boom": "9.1.0",

@@ -50,10 +50,10 @@ describe('Products SERVICES:', function () {
   });
 
   it('Verifica a função updateProduct sem sucesso ', async function () {
-    sinon.stub(productsModel, 'updateProduct').resolves();
+    sinon.stub(productsModel, 'updateProduct').resolves(null);
   
     const responseService = await productsService.updateProduct(resUptade);
-    expect(responseService.status).to.equal('INVALID_VALUE');
-    expect(responseService.data).to.deep.equal({ message: 'Product not updated' })
+    expect(responseService.status).to.equal('NOT_FOUND');
+    expect(responseService.data).to.deep.equal({ message: 'Product not found' });
   });
 });

@@ -31,12 +31,12 @@ const newProduct = {
 };
 
 const reqUpdate = {
-  "name": "Martelo do Batman"
+  name: 'Martelo do Batman',
 };
 
 const resUptade = {
-  "id": 1,
-  "name": "Martelo do Batman"
+  id: 1,
+  name: 'Martelo do Batman',
 };
 
 module.exports = {

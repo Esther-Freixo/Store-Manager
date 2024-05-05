@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const connection = require('../../../src/models/connection');
 const { productsModel } = require('../../../src/models');
-const { products, newProduct, newProductName, resUptade } = require('../mocks/products.mock');
+const { products, newProduct, newProductName } = require('../mocks/products.mock');
 
 describe('Products MODEL:', function () {
   it('Recuperando todos os products com sucesso', async function () {
@@ -38,10 +38,10 @@ describe('Products MODEL:', function () {
     expect(result).to.deep.equal(newProduct);
   });
   
-  it('Faz o upatade de um produto com sucesso', async function(){
+  it('Faz o uptade de um produto com sucesso', async function () {
     sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
     const id = 1; 
-    const name = "Teste Update";
+    const name = 'Teste Update';
     const expectedResult = { id, name };
     
     const result = await productsModel.updateProduct(id, name);
@@ -49,15 +49,15 @@ describe('Products MODEL:', function () {
     expect(result).to.deep.equal(expectedResult);
   });
 
-  it('Returns null if no product is updated', async function() {
+  it('Returns null if no product is updated', async function () {
     sinon.stub(connection, 'execute').resolves([{ affectedRows: 0 }]);
 
     const id = 1;
-    const name = "Teste Update";
+    const name = 'Teste Update';
     
     const result = await productsModel.updateProduct(id, name);
     
-    expect(result).to.be.null;
+    expect(result).to.be.equal(null);
   });
 
   afterEach(function () {

@@ -1,4 +1,4 @@
-const { productsModel } = require("../models");
+const { productsModel } = require('../models');
 
 const validateName = (req, res, next) => {
   const { name } = req.body;
@@ -14,17 +14,16 @@ const validateName = (req, res, next) => {
 const valideIdExist = async (req, res, next) => {
   const { id } = req.params;
   const findById = await productsModel.getById(id);
-  if(!findById) {
+  if (!findById) {
     return {
-      status: NOT_FOUND,
-      data: { "message": "Product not found" }
-    }
+      status: 'NOT_FOUND',
+      data: { message: 'Product not found' },
+    };
   }
-  next()
-} 
-
+  next();
+}; 
 
 module.exports = {
   validateName,
-  valideIdExist
+  valideIdExist,
 };
